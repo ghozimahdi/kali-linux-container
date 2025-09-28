@@ -1,0 +1,35 @@
+# Shared Folder
+
+Folder ini di-mount ke `/shared` dalam Kali Linux container.
+
+Gunakan folder ini untuk:
+
+- Transfer file antara host dan container
+- Menyimpan script dan tools
+- Backup hasil penetration testing
+- Sharing data antar session
+
+## Contoh Penggunaan
+
+Dari host (macOS):
+
+```bash
+# Copy file ke shared folder
+cp script.py shared/
+
+# Edit file dalam shared folder
+nano shared/script.py
+```
+
+Dari dalam container:
+
+```bash
+# Akses shared folder
+cd /shared
+
+# Jalankan script
+python3 script.py
+
+# Simpan hasil scan
+nmap target > /shared/scan_results.txt
+```

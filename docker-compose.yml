@@ -1,0 +1,37 @@
+services:
+  kali-linux:
+    image: ${KALI_IMAGE:-kalilinux/kali-rolling:latest}
+    container_name: ${CONTAINER_NAME:-kali-linux-container}
+    hostname: ${HOSTNAME:-kali-linux}
+    tty: true
+    stdin_open: true
+    privileged: true
+    volumes:
+      - kali-data:/root
+      - ./shared:/shared
+    networks:
+      - kali-network
+    ports:
+      - "${SSH_PORT:-22}:22" # SSH port
+      - "${HTTP_PORT:-80}:80" # HTTP port
+      - "${HTTPS_PORT:-443}:443" # HTTPS port
+      - "${ALT_HTTP_PORT:-8080}:8080" # Alternative HTTP port
+    environment:
+      - TERM=xterm-256color
+    restart: unless-stopped
+    command: >
+      /bin/bash -c "
+      apt-get update && 
+      apt-get install -y openssh-server sudo nano vim curl wget git &&
+      service ssh start &&
+      echo 'root:${ROOT_PASSWORD:-kali123}' | chpasswd &&
+      tail -f /dev/null
+      "
+
+volumes:
+  kali-data:
+    driver: local
+
+networks:
+  kali-network:
+    driver: bridge
