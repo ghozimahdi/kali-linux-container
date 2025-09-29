@@ -7,6 +7,7 @@ RUN apt-get update && \
     libbz2-dev libreadline-dev libsqlite3-dev curl \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev git tree golang \
     adb fastboot android-tools-adb android-tools-fastboot \
+    kali-tools-top10 \
     && apt-get clean
 
 # Install pyenv
