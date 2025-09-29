@@ -1,11 +1,12 @@
 FROM kalilinux/kali-rolling:latest
 
-# Install domain reconnaissance & pentest tools
+# Install domain reconnaissance & pentest tools + Android tools
 RUN apt-get update && \
     apt-get install -y whois dnsutils sublist3r amass gobuster nikto wafw00f \
     python3-pip make build-essential libssl-dev zlib1g-dev \
     libbz2-dev libreadline-dev libsqlite3-dev curl \
     libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev git tree golang \
+    adb fastboot android-tools-adb android-tools-fastboot \
     && apt-get clean
 
 # Install pyenv
