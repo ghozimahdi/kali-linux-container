@@ -17,7 +17,6 @@ show_help() {
     echo "  stop        - Stop Kali Linux container"
     echo "  restart     - Restart Kali Linux container"
     echo "  shell       - Open bash shell in container"
-    echo "  ssh         - Connect via SSH (password: kali123)"
     echo "  logs        - Show container logs"
     echo "  status      - Show container status"
     echo "  update      - Update Kali packages"
@@ -81,14 +80,7 @@ case "${1:-help}" in
         docker exec -it $CONTAINER_NAME /bin/bash
         ;;
     
-    "ssh")
-        if ! container_running; then
-            echo "❌ Container tidak berjalan. Jalankan '$0 start' terlebih dahulu."
-            exit 1
-        fi
-        echo "🔐 Connecting via SSH (password: kali123)..."
-        ssh root@localhost -p 22
-        ;;
+
     
     "logs")
         echo "📋 Container logs:"

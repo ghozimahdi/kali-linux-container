@@ -3,6 +3,7 @@
 .env.production
 
 # Shared folder content (except .gitkeep)
+res/*
 shared/*
 !shared/.gitkeep
 
