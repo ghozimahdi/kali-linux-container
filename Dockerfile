@@ -10,9 +10,9 @@ RUN apt-get update && \
     kali-tools-top10 \
     && apt-get clean
 
-# Install Python packages including Frida
-RUN pip3 install --upgrade pip && \
-    pip3 install frida-tools objection
+# Upgrade pip and install frida-tools
+RUN pip3 install --upgrade pip --break-system-packages && \
+    pip3 install frida-tools --break-system-packages
 
 # Install pyenv
 RUN curl https://pyenv.run | bash
